@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import { AuthLibService } from '@flight-workspace/shared/auth-lib';
+import { shareNgZone } from '@angular-architects/module-federation-tools';
 
 @Component({
   selector: 'flight-app',
@@ -9,7 +10,9 @@ import { AuthLibService } from '@flight-workspace/shared/auth-lib';
 export class AppComponent {
   title = 'shell';
 
-  constructor(private authService: AuthLibService) {
+  constructor(private authService: AuthLibService,
+              private ngZone: NgZone) {
+    shareNgZone(ngZone);
     this.authService.login('Max', '');
   }
 }
