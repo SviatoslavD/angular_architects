@@ -5,6 +5,8 @@ import {FlightService} from '@flight-workspace/flight-lib';
 import { Store } from '@ngrx/store';
 import { FlightBookingAppState } from './../+state/flight-booking.reducer';
 import * as FlightBookingActions from './../+state/flight-booking.actions';
+import { take } from 'rxjs/operators';
+import { selectFlightsFromBookingState } from '../+state/flight-booking.selectors';
 
 @Component({
   selector: 'flight-search',
@@ -17,7 +19,7 @@ export class FlightSearchComponent implements OnInit {
   to = 'Graz'; // in Austria
   urgent = false;
 
-  flights$ = this.store.select(s => s.flightBooking.flights);
+  flights$ = this.store.select(selectFlightsFromBookingState);
 
   // "shopping basket" with selected flights
   basket: { [id: number]: boolean } = {
@@ -50,7 +52,17 @@ export class FlightSearchComponent implements OnInit {
 
 
   delay(): void {
-    this.flightService.delay();
+
+    this.flights$.pipe(take(1)).subscribe(flights => {
+      const flight = flights[0];
+
+      const oldDate = new Date(flight.date);
+      const newDate = new Date(oldDate.getTime() + 15 * 60 * 1000);
+      const newFlight = { ...flight, date: newDate.toISOString() };
+
+      this.store.dispatch(FlightBookingActions.updateFlight({flight: newFlight}));
+    });
   }
+
 
 }

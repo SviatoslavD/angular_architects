@@ -15,3 +15,8 @@ export const loadFlightBookingsFailure = createAction(
   '[FlightBooking] Load FlightBookings Failure',
   props<{ error: any }>()
 );
+
+export const updateFlight = createAction(
+  '[FlightBooking] Update Flight',
+  props<{flight: Flight}>()
+);
