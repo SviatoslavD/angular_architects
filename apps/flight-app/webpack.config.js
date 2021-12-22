@@ -35,7 +35,7 @@ module.exports = {
 
         // For hosts (please adjust)
         remotes: {
-          // 'passenger': "passenger@http://localhost:3000/remoteEntry.js"
+          'passenger': "passenger@http://localhost:3000/remoteEntry.js"
         },
 
         shared: share({

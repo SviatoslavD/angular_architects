@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(private authService: AuthLibService,
               private ngZone: NgZone) {
     shareNgZone(ngZone);
-    this.authService.login('Max', '');
+    this.authService.login('Sviat', '');
+    this.authService.logUser();
   }
 }

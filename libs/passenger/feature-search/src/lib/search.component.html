@@ -25,6 +25,10 @@
             class="btn btn-default">
             Search
           </button>
+          <button (click)="changeUser()" [disabled]="!name"
+                  class="btn btn-default">
+            Change User
+          </button>
 
           <div *ngIf="passengers.length > 0">
             {{ passengers.length }} passengers found!

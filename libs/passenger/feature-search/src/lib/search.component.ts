@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Passenger, SearchFacade } from '@flight-workspace/passenger/domain';
 import { AuthLibService } from '@flight-workspace/shared/auth-lib';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'passenger-search',
@@ -24,5 +25,10 @@ export class SearchComponent {
 
   toggleSelection(p: Passenger) {
     this.selectedPassenger = p;
+  }
+
+  changeUser() {
+    this.authService.login('Andriy', '123456789');
+    this.user = this.authService.user;
   }
 }

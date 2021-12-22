@@ -28,6 +28,7 @@ module.exports = {
         name: "passenger",
         filename: "remoteEntry.js",
         exposes: {
+          // the SHELL can use this path to load it
           './module': './apps/passenger/src/app/passenger/passenger.module.ts',
         },
 

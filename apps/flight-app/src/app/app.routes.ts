@@ -23,6 +23,7 @@ export const APP_ROUTES: Routes = [
     path: 'mf-passenger',
     loadChildren: () =>
       loadRemoteModule<PassengerMf>({
+        // main.ts load this remote upfront
         // remoteEntry: 'http://localhost:3000/remoteEntry.js',
         remoteName: 'passenger',
         exposedModule: './module'
